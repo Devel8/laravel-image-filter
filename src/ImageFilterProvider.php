@@ -28,5 +28,10 @@ class ImageFilterProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/image-filter.php', 'image-filter'
         );
+
+        $this->app->singleton('filter-manager', function(){
+            $config = config('image-filter');
+            return new FilterManager($config);
+        });
     }
 }

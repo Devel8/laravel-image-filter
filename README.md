@@ -30,6 +30,27 @@ Execute the following command to get the latest version of the package:
 composer require devel8/laravel-image-filter
 ```
 
+In your `config/app.php` add `Devel8\LaravelImageFilter\ImageFilterProvider::class` to the end of the `providers` array:
+
+```php
+'providers' => [
+    ...
+    Devel8\LaravelImageFilter\ImageFilterProvider::class,
+],
+```
+
+If Lumen
+
+```php
+$app->register(Devel8\LaravelImageFilter\ImageFilterProvider::class);
+```
+
+Publish Configuration
+
+```shell
+php artisan vendor:publish --provider "Devel8\LaravelImageFilter\ImageFilterProvider"
+```
+
 ### How to use
 
 
