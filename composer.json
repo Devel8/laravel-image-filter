@@ -1,5 +1,6 @@
 {
     "name": "devel8/laravel-image-filter",
+    "version": "1.0.0",
     "description": "A laravel package for image filtering",
     "type": "laravel, image, image-filter",
     "license": "MIT",
@@ -12,9 +13,9 @@
     "require": {
         "php": "^5.3.3 || ^7.0",
         "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-        "intervention/image": "^2.4",
-        "illuminate/cache": "5.0.*",
-        "illuminate/filesystem": "5.0.*"
+        "intervention/image": "~2.4",
+        "illuminate/cache": "~5.4",
+        "illuminate/filesystem": "~5.4"
     },
     "autoload": {
         "psr-4": {

@@ -33,5 +33,7 @@ class ImageFilterProvider extends ServiceProvider
             $config = config('image-filter');
             return new FilterManager($config);
         });
+
+        //require_once(__DIR__ . '/ImagesResolverHelper.php');
     }
 }

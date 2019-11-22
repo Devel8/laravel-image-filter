@@ -111,25 +111,10 @@ class FilterManager {
         $source_key_cache = $this->imageCacheKey($path);
 
         $destination_path = $this->getKeyCache($source_key_cache, function () use ($path) {
-            $destination_path = $this->saveSourceImage($path);
+            $destination_path = $path;
             return $destination_path;
         });
 
-        return $destination_path;
-    }
-
-    /**
-     * Save source image.
-     *
-     * @param $path
-     *
-     * @return string
-     */
-    private function saveSourceImage($path){
-        $basename = basename( $path );
-        $destination_path = "{$this->config['storage']['source']}{$basename}";
-        $image_source = $this->make( $path , 15);
-        $image_source->save( $destination_path );
         return $destination_path;
     }
 
@@ -167,7 +152,7 @@ class FilterManager {
         $image_source = $this->imageManager->make($source_path);
 
         // Check if the filter folder exists.
-        $destination_cache_folder = "{$this->config['storage']['cache']}{$filter}";
+        $destination_cache_folder = public_path()."/{$this->config['storage']['cache']}{$filter}";
         if(!$this->filesystem->isDirectory($destination_cache_folder)){
             $this->filesystem->makeDirectory($destination_cache_folder);
         }
@@ -176,7 +161,9 @@ class FilterManager {
         $image_filtered = $this->applyFilter($image_source, $filter);
         $image_filtered->save($destination_cache_path);
 
-        return $destination_cache_path;
+        $url = $this->config['storage']['cache'].$filter.DIRECTORY_SEPARATOR.$basename;
+
+        return $url;
     }
 
     /**
@@ -268,10 +255,6 @@ class FilterManager {
         ];
 
         $context = stream_context_create($options);
-
-        if (!(strpos($path, "http:") === 0)) {
-            $path = 'http:'.$path;
-        }
 
         if ($data = @file_get_contents($path, false, $context)) {
             return $this->imageManager->make($data);

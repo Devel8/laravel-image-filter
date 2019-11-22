@@ -53,7 +53,9 @@ php artisan vendor:publish --provider "Devel8\LaravelImageFilter\ImageFilterProv
 
 ### How to use
 
-
+```php
+$imageFilteredUrl = $imageManager->resolve( '/source/image/path/file.jpg', 'image_small' );
+```
 
 ### Configuration parameters
 
